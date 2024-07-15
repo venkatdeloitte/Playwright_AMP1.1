@@ -1,0 +1,24 @@
+{
+  "name": "playwright_amp1.1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/venkatdeloitte/Playwright_AMP1.1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/venkatdeloitte/Playwright_AMP1.1/issues"
+  },
+  "homepage": "https://github.com/venkatdeloitte/Playwright_AMP1.1#readme",
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.8.0",
+    "@cucumber/pretty-formatter": "^1.0.1",
+    "@playwright/test": "^1.45.1",
+    "@types/node": "^20.14.10",
+    "playwright": "^1.45.1"
+  }
+}
