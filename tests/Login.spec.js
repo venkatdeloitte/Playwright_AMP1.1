@@ -16,4 +16,38 @@ test.describe('Login Functionality Tests', () => {
         const errorMessage = await page.locator('[data-test="error"]').textContent();
         await expect(errorMessage).toContain('Epic sadface: Username and password do not match any user in this service');
     });
+    test('Verify the title of the website DEMO QA and validate the error on email field', async({page}) =>  {
+        await page.goto('https://demoqa.com/');
+        await page.waitForLoadState('load');
+        const title = await page.title();
+        await expect(title).toBe('DEMOQA');
+        await page.locator('//h5[normalize-space()="Elements"]').click();
+        await page.locator('text=Text Box').click();
+        await page.locator('//input[@id="userName"]').fill('Venkat');
+        await page.locator('//input[@id="userEmail"]').fill('com');
+        await page.locator('//textarea[@id="currentAddress"]').fill('Bangalore');
+        await page.locator('//textarea[@id="permanentAddress"]').fill('Bangalore');
+        await page.locator('#submit').click();
+        await expect(page.locator('//input[@class="mr-sm-2 field-error form-control"]')).toBeVisible();
+        await expect(page.locator('//p[@id="email"]')).not.toBeVisible();
+
+    });
+    test('Verify the title of the website DEMO QA', async({page}) =>  {
+        await page.goto('https://demoqa.com/');
+        await page.waitForLoadState('load');
+        const title = await page.title();
+        await expect(title).toBe('DEMOQA');
+        await page.locator('//h5[normalize-space()="Elements"]').click();
+        await page.locator('text=Text Box').click();
+        await page.locator('//input[@id="userName"]').fill('Venkat');
+        await page.locator('//input[@id="userEmail"]').fill('venkat@yopmail.com');
+        await page.locator('//textarea[@id="currentAddress"]').fill('Bangalore');
+        await page.locator('//textarea[@id="permanentAddress"]').fill('Bangalore');
+        await page.locator('#submit').click();
+        await expect(page.locator('//input[@class="mr-sm-2 field-error form-control"]')).not.toBeVisible();
+        await page.waitForSelector('//p[@id="email"]');
+        const emailText = await page.locator('//p[@id="email"]').textContent();
+        await expect(emailText).toContain('Email:venkat@yopmail.com');
+
+    });
 });
